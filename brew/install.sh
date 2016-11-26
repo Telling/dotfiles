@@ -10,8 +10,13 @@ if ! which brew > /dev/null; then
     esac
 fi
 
-if [ "$1" = "formulaes" ] || [ "$1" = "casks" ]; then
+if [ "$1" = "formulaes" ]; then
     tr '\n' '\0' < "${PWD}/${1}" | xargs -0 brew install
+    exit 0
+fi
+
+if [ "$1" = "casks" ]; then
+    tr '\n' '\0' < "${PWD}/${1}" | xargs -0 brew cask install
     exit 0
 fi
 
