@@ -1,0 +1,44 @@
+[user]
+    name = Stephan Telling
+    email = st@telling.xyz
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[color "branch"]
+    current = green reverse
+    local = green
+    remote = red
+
+[color "diff"]
+    meta = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = magenta
+
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = vim
+    whitespace = trailing-space,space-before-tab,indent-with-non-tab
+
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[filter "media"]
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
+
+[diff]
+    tool = mvimdiff
+
+[difftool "mvimdiff"]
+    cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"

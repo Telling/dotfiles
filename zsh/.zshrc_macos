@@ -1,0 +1,23 @@
+# zsh macOS specific config
+
+# Alias'
+alias updatedb="sudo /usr/libexec/locate.updatedb"
+
+# Funcs to open apps from cli
+macdown() { open -a MacDown.app "$*" }
+sqlitebrowser() { open -a sqlitebrowser "$*" }
+vscode() { open -a "Visual Studio Code.app" "$*" }
+
+# Don't send requests to google
+export HOMEBREW_NO_ANALYTICS=1
+
+upgrade_brews() {
+    echo "==> Updating brew"
+    brew update
+    echo "==> Upgrading brews"
+    brew upgrade
+    echo "==> Cleanup after brew"
+    brew cleanup
+}
+
+source $HOME/.iterm2_shell_integration.zsh
