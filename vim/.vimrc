@@ -32,6 +32,7 @@ Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'rodjek/vim-puppet'
 
 " Plug 'vim-scripts/javacomplete'
 call plug#end()
