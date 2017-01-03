@@ -34,6 +34,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rodjek/vim-puppet'
 Plug 'robbles/logstash.vim'
+Plug 'vimwiki/vimwiki'
 
 " Plug 'vim-scripts/javacomplete'
 call plug#end()
