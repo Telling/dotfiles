@@ -32,6 +32,9 @@ Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'rodjek/vim-puppet'
+Plug 'robbles/logstash.vim'
+Plug 'vimwiki/vimwiki'
 
 " Plug 'vim-scripts/javacomplete'
 call plug#end()
@@ -86,6 +89,7 @@ autocmd FileType js setlocal sw=2 ts=2 sts=2
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 autocmd FileType xml setlocal sw=2 ts=2 sts=2
 autocmd FileType sql setlocal sw=2 ts=2 sts=2
+autocmd FileType logstash setlocal sw=2 ts=2 sts=2
 
 " Don't write backup file if vim is being called by 'crontab -e'
 au BufWrite /private/tmp/crontab.* set nowritebackup
