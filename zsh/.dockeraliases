@@ -1,3 +1,5 @@
+DOCKER_HIDE_LEGACY_COMMANDS=1
+
 # Kills all running containers
 docker_containers_kill_all() {
     docker kill $(docker ps -q)
