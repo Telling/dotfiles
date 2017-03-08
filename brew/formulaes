@@ -8,6 +8,7 @@ go
 exiftool
 mtr
 gnu-sed
+gnupg2
 ngrep
 macvim
 shellcheck
