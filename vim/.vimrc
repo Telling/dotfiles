@@ -35,6 +35,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rodjek/vim-puppet'
 Plug 'robbles/logstash.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'eapache/rainbow_parentheses.vim'
 
 " Plug 'vim-scripts/javacomplete'
 call plug#end()
@@ -90,6 +91,9 @@ autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 autocmd FileType xml setlocal sw=2 ts=2 sts=2
 autocmd FileType sql setlocal sw=2 ts=2 sts=2
 autocmd FileType logstash setlocal sw=2 ts=2 sts=2
+
+" always use rainbow parentheses
+au VimEnter * RainbowParenthesesToggleAll
 
 " Don't write backup file if vim is being called by 'crontab -e'
 au BufWrite /private/tmp/crontab.* set nowritebackup
@@ -182,6 +186,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " vim-airline config
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16'
+let g:airline_base16_improved_contrast = 1
 
 " ack config
 let g:ackprg = 'ag --vimgrep'
