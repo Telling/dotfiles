@@ -74,6 +74,8 @@ set vb t_vb=                              " no bells
 set ttyfast                               " send more data to the terminal
 set t_Co=256                              " 256 colors in vim
 set colorcolumn=80                        " Show marker at column 80
+set showmatch                             " highlight matching parentheses etc.
+set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
 
@@ -86,6 +88,8 @@ autocmd FileType htmldjango setlocal sw=2 ts=2 sts=2
 autocmd FileType css setlocal sw=2 ts=2 sts=2
 autocmd FileType scss setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
+autocmd FileType json setlocal sw=2 ts=2 sts=2
+autocmd FileType yaml setlocal sw=2 ts=2 sts=2
 autocmd FileType js setlocal sw=2 ts=2 sts=2
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 autocmd FileType xml setlocal sw=2 ts=2 sts=2
@@ -115,9 +119,6 @@ autocmd FileType tex setlocal spell
 autocmd FileType tex setlocal spelllang=da
 " make sure vim-latex is loaded if the file is an empty .tex
 let g:tex_flavor='latex'
-
-" Filetype specific options for yml (yml for me = ansible)
-autocmd FileType yaml setlocal filetype=ansible
 
 " Omnicompletion for various languages
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
