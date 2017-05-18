@@ -8,36 +8,29 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'raimondi/delimitMate'
 Plug 'vim-scripts/Gundo'
-Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
-Plug 'gregsexton/MatchTag'
-Plug 'godlygeek/tabular'
+Plug 'Valloric/MatchTagAlways'
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'tweekmonster/django-plus.vim'
-Plug 'chase/vim-ansible-yaml'
 Plug 'fatih/vim-go'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'pangloss/vim-javascript'
-Plug 'othree/html5.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'rodjek/vim-puppet'
-Plug 'robbles/logstash.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'hashivim/vim-terraform'
 Plug 'vimwiki/vimwiki'
-Plug 'eapache/rainbow_parentheses.vim'
 
-" Plug 'vim-scripts/javacomplete'
 call plug#end()
 
 filetype plugin on                        " use the file type plugins
@@ -94,10 +87,12 @@ autocmd FileType js setlocal sw=2 ts=2 sts=2
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 autocmd FileType xml setlocal sw=2 ts=2 sts=2
 autocmd FileType sql setlocal sw=2 ts=2 sts=2
-autocmd FileType logstash setlocal sw=2 ts=2 sts=2
 
 " always use rainbow parentheses
-au VimEnter * RainbowParenthesesToggleAll
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Don't write backup file if vim is being called by 'crontab -e'
 au BufWrite /private/tmp/crontab.* set nowritebackup
@@ -121,10 +116,6 @@ autocmd FileType tex setlocal spelllang=da
 let g:tex_flavor='latex'
 
 " Omnicompletion for various languages
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
 
 " NERDTree config
@@ -137,6 +128,7 @@ map <F3> :NERDTreeToggle<CR>
 
 " Dont fold in markdown files
 let g:vim_markdown_folding_disabled=1
+" Wrap lines in markdown
 autocmd FileType mkd setlocal wrap
 
 " Gundo remap
@@ -155,15 +147,11 @@ noremap <silent> <F5> :TagbarToggle<CR>
 " Syntastic config
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs=1
 let g:syntastic_python_checkers=['pylint', 'flake8']
 let g:syntastic_go_checkers = ['golint', 'go', 'govet']
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_style_error_symbol = "✗"
-let g:syntastic_style_warning_symbol = "⚠"
-
 let g:syntastic_mode_map={'mode': 'active',
         \ "active_filetypes": [],
         \ 'passive_filetypes': ['tex']}
@@ -175,9 +163,6 @@ let g:NERDCustomDelimiters = {'python': { 'left': '# ' }}
 let g:easytags_async = 1
 
 " YouCompleteMe config
-let g:ycm_server_keep_logfiles = 1
-" let g:ycm_path_to_python_interpreter = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7'
-" let g:ycm_path_to_python_interpreter = '/usr/local/Frameworks/Python.framework/Versions/2.7/bin/python2.7'
 let g:ycm_complete_in_comments = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 

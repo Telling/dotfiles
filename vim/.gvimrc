@@ -13,7 +13,7 @@ set guioptions-=L
 set guioptions-=R
 
 " Set the font and size
-set guifont=InconsolataForPowerline:h12
+set guifont=InconsolataForPowerline:h13
 
 " Anti alias
 set antialias
