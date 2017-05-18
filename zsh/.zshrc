@@ -1,7 +1,7 @@
 # zsh config
 
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="minimal"
+ZSH_THEME="minimal-fix"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
@@ -48,6 +48,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 export LANG=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # go workspace
