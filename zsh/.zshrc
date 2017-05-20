@@ -3,6 +3,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="minimal-fix"
 COMPLETION_WAITING_DOTS="true"
+DISABLE_AUTO_TITLE=true
 
 plugins=(
     gitfast
