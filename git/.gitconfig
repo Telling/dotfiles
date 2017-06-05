@@ -42,3 +42,7 @@
 
 [difftool "mvimdiff"]
     cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"
+
+# Make it easier to work with launchpad
+[url "git+ssh://tell1ng@git.launchpad.net/"]
+    insteadof = lp:
