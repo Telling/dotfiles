@@ -21,6 +21,7 @@ Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'tweekmonster/django-plus.vim'
 Plug 'fatih/vim-go'
+Plug 'tpope/vim-fugitive'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -71,6 +72,7 @@ set showmatch                             " highlight matching parentheses etc.
 set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
+set clipboard=unnamed                     " fix copy/paste issue
 
 " Change <Leader>
 let mapleader = ","
