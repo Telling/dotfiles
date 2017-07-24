@@ -17,7 +17,7 @@ docker_images_delete_all_untagged() {
 
 # Export env. vars. for docker client to point at host
 docker_machine_env() {
-    if [ ! -z $1 ]; then
+    if [[ ! -z $1 ]]; then
         eval $(docker-machine env "$1")
     else
         echo "Please provide machine name as argument."

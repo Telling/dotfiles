@@ -20,4 +20,8 @@ upgrade_brews() {
     brew cleanup
 }
 
+update_all() {
+    upgrade_brews
+}
+
 source $HOME/.iterm2_shell_integration.zsh
