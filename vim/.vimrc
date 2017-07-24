@@ -69,7 +69,7 @@ set ttyfast                               " send more data to the terminal
 set t_Co=256                              " 256 colors in vim
 set colorcolumn=80                        " Show marker at column 80
 set showmatch                             " highlight matching parentheses etc.
-set cursorline                            " draw a line where the cursor is
+" set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
 set clipboard=unnamed                     " fix copy/paste issue
@@ -178,6 +178,9 @@ let g:airline_base16_improved_contrast = 1
 
 " ack config
 let g:ackprg = 'ag --vimgrep'
+
+" vim-terraform config
+let g:terraform_align=1
 
 " Viewport Controls i.e. moving between split panes
 map <silent>,h <C-w>h
