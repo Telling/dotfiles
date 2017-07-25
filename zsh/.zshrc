@@ -22,7 +22,6 @@ plugins=(
     zsh-completions
     python
     pip
-    virtualenvwrapper
     django
 )
 
@@ -57,6 +56,7 @@ export PATH=$PATH:$GOBIN
 
 # python workspace
 export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
 
 # set GPG_TTY to a real tty device
