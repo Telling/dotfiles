@@ -2,6 +2,7 @@
 
 # Alias'
 alias updatedb="sudo /usr/libexec/locate.updatedb"
+alias lockscreen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Funcs to open apps from cli
 macdown() { open -a MacDown.app "$*" }
