@@ -7,7 +7,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'raimondi/delimitMate'
-Plug 'vim-scripts/Gundo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'xolox/vim-misc'
@@ -22,6 +21,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'tweekmonster/django-plus.vim'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -31,6 +31,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vimwiki/vimwiki'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'chr4/nginx.vim'
+Plug 'chr4/sslsecure.vim'
 
 call plug#end()
 
@@ -67,12 +70,12 @@ set scrolloff=3                           " more lines of context
 set vb t_vb=                              " no bells
 set ttyfast                               " send more data to the terminal
 set t_Co=256                              " 256 colors in vim
-set colorcolumn=80                        " Show marker at column 80
+set colorcolumn=88                        " Show marker at column 88
 set showmatch                             " highlight matching parentheses etc.
-" set cursorline                            " draw a line where the cursor is
+set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
-set clipboard=unnamed                     " fix copy/paste issue
+set clipboard=unnamedplus                 " fix copy/paste issue
 
 " Change <Leader>
 let mapleader = ","
@@ -109,6 +112,9 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Ignore some subset of files
+set wildignore="*.class"
+
 " Filetype specific options for TeX
 autocmd FileType tex setlocal fileencoding=utf-8
 autocmd FileType tex setlocal makeprg=pdflatex\ '%'
@@ -120,9 +126,13 @@ let g:tex_flavor='latex'
 " Omnicompletion for various languages
 autocmd FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
 
+" Java completion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java JCEnable
+
 " NERDTree config
 let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', '\.class$', '\.aux$', '\.git$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', '\.class$', '\.aux$', '\.git$', "^__py", "\.pytest_cache"]
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
@@ -133,9 +143,6 @@ let g:vim_markdown_folding_disabled=1
 " Wrap lines in markdown
 autocmd FileType mkd setlocal wrap
 
-" Gundo remap
-nnoremap <F4> :GundoToggle<CR>
-
 " Buffergator config
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy = "T"
@@ -144,7 +151,7 @@ let g:buffergator_display_regime = "filepath"
 map <F2> :BuffergatorToggle<CR>
 
 " Tagbar config
-noremap <silent> <F5> :TagbarToggle<CR>
+noremap <silent> <F4> :TagbarToggle<CR>
 
 " Syntastic config
 let g:syntastic_auto_loc_list = 1
@@ -152,7 +159,7 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs=1
-let g:syntastic_python_checkers=['pylint', 'flake8']
+let g:syntastic_python_checkers=['pylint', 'flake8', 'bandit']
 let g:syntastic_go_checkers = ['golint', 'go', 'govet']
 let g:syntastic_mode_map={'mode': 'active',
         \ "active_filetypes": [],
@@ -181,6 +188,12 @@ let g:ackprg = 'ag --vimgrep'
 
 " vim-terraform config
 let g:terraform_align=1
+
+" gitgutter config
+autocmd BufWritePost * GitGutter
+
+" nginx.vim config
+au BufRead,BufNewFile */*-nginx/*.com set ft=nginx
 
 " Viewport Controls i.e. moving between split panes
 map <silent>,h <C-w>h
