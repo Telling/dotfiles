@@ -1,8 +1,3 @@
-[user]
-    name = Stephan Telling
-    email = st@telling.xyz
-    signingkey = D5045439E582AC57C52ADE981AAD347539F89F2C
-
 [color]
     diff = auto
     status = auto
@@ -31,7 +26,7 @@
     whitespace = trailing-space,space-before-tab,indent-with-non-tab
 
 [alias]
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [filter "media"]
     required = true
@@ -39,18 +34,10 @@
     smudge = git media smudge %f
 
 [diff]
-    tool = mvimdiff
-
-[difftool "mvimdiff"]
-    cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"
-
-# Make it easier to work with launchpad
-[url "git+ssh://tell1ng@git.launchpad.net/"]
-    insteadof = lp:
-
-[gpg]
-    program = qubes-gpg-client-wrapper
+    tool = vimdiff
 
 [commit]
-    gpgsign = true
     verbose = true
+
+[status]
+    showStash = true
