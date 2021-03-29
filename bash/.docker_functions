@@ -1,0 +1,104 @@
+# Inspiration from https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc
+
+del_stopped(){
+    local name=${1}
+    local state
+    state=$(docker inspect --format "{{.State.Running}}" "$name" 2>/dev/null)
+
+    if [[ "$state" == "false" ]]; then
+        docker rm "$name"
+    fi
+}
+
+#
+# Containers aliases
+#
+
+firefox(){
+    if [[ -z ${1} ]]; then
+        echo "Please provide profile as argument."
+        return 1
+    fi
+
+    del_stopped "firefox-${1}"
+
+    docker run -d \
+        --memory 4gb \
+        --cpuset-cpus 0 \
+        --shm-size 2gb \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v "${PERSONAL_STORAGE_PATH}/firefox/${1}/cache:/home/firefox/.cache/mozilla" \
+        -v "${PERSONAL_STORAGE_PATH}/firefox/${1}/mozilla:/home/firefox/.mozilla" \
+        -v "${HOME}/Downloads:/home/firefox/Downloads" \
+        -e "DISPLAY=unix${DISPLAY}" \
+        -e GDK_SCALE \
+        -e GDK_DPI_SCALE \
+        --security-opt seccomp="${HOME}/chrome.json" \
+        --name "firefox-${1}" \
+        telling/firefox --no-remote
+}
+
+firefox-disp(){
+    docker run -d \
+        --rm \
+        --memory 3gb \
+        --cpuset-cpus 0 \
+        --shm-size 2gb \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e "DISPLAY=unix${DISPLAY}" \
+        -e GDK_SCALE \
+        -e GDK_DPI_SCALE \
+        --security-opt seccomp="${HOME}/chrome.json" \
+        --name "firefox-${RANDOM}" \
+        telling/firefox --no-remote "$@"
+}
+
+thunderbird(){
+    del_stopped thunderbird
+
+    docker run -d \
+        --memory 3gb \
+        --cpuset-cpus 0 \
+        --shm-size 2gb \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v "${HOME}/.gnupg:/home/thunderbird/.gnupg:ro" \
+        -v "${PERSONAL_STORAGE_PATH}/thunderbird:/home/thunderbird/.thunderbird" \
+        -v "${HOME}/Downloads:/home/thunderbird/Downloads" \
+        -e "LC_TIME=da_DK.UTF-8" \
+        -e "TZ=Europe/Copenhagen" \
+        -e "DISPLAY=unix${DISPLAY}" \
+        -e GDK_SCALE \
+        -e GDK_DPI_SCALE \
+        --security-opt seccomp="${HOME}/chrome.json" \
+        --name thunderbird \
+        telling/thunderbird "${@}"
+}
+
+aws() {
+    docker run \
+        --rm \
+        -ti \
+        -v ~/.aws:/root/.aws \
+        -v "${PWD}:/aws" \
+        amazon/aws-cli:2.0.36 "${@}"
+}
+
+# Export env. vars. for docker client to point at host
+docker_machine_env() {
+    if [[ -z ${1} ]]; then
+        echo "Please provide machine name as argument."
+        return 1
+    fi
+
+    # shellcheck disable=SC2046
+    eval $(docker-machine env "${1}")
+}
+
+# Unset env vars for docker client
+docker_machine_unset_env() {
+    # shellcheck disable=SC2046
+    eval $(docker-machine env --unset)
+}
