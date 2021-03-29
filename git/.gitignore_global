@@ -10,10 +10,13 @@
 *.tar.gz
 *.zip
 *.war
+*.terraform.*
 
 tags
 tags.lock
 tags.temp
+
+Session.vim
 
 .idea/
 .ropeproject/
