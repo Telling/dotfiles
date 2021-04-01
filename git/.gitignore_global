@@ -11,6 +11,8 @@
 *.zip
 *.war
 *.terraform.*
+*.tfstate
+.terraform/*
 
 tags
 tags.lock
