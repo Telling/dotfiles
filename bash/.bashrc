@@ -37,7 +37,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-complete -C /home/st/.bin/terraform terraform
+complete -C /home/st/.local/bin/terraform terraform
 
 # Save and reload the history after each command finishes
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
