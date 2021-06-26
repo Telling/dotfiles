@@ -23,9 +23,9 @@ firefox(){
     del_stopped "firefox-${1}"
 
     docker run -d \
-        --memory 4gb \
+        --memory 6gb \
         --cpuset-cpus 0 \
-        --shm-size 2gb \
+        --shm-size 4gb \
         -v /etc/localtime:/etc/localtime:ro \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v "${PERSONAL_STORAGE_PATH}/firefox/${1}/cache:/home/firefox/.cache/mozilla" \
