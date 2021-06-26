@@ -5,7 +5,6 @@ call plug#begin('~/.vim-plugins')
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'raimondi/delimitMate'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -34,6 +33,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'chr4/nginx.vim'
 Plug 'chr4/sslsecure.vim'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -153,17 +153,11 @@ map <F2> :BuffergatorToggle<CR>
 " Tagbar config
 noremap <silent> <F4> :TagbarToggle<CR>
 
-" Syntastic config
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs=1
-let g:syntastic_python_checkers=['pylint', 'flake8', 'bandit']
-let g:syntastic_go_checkers = ['golint', 'go', 'govet']
-let g:syntastic_mode_map={'mode': 'active',
-        \ "active_filetypes": [],
-        \ 'passive_filetypes': ['tex']}
+" ale config
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+let g:ale_sh_bashate_options = '--max-line-length 88'
+let g:ale_list_window_size = 10
 
 " NERD commenter config
 let g:NERDCustomDelimiters = {'python': { 'left': '# ' }}
@@ -217,5 +211,8 @@ function ExpandSnippetOrCarriageReturn()
     endif
 endfunction
 inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+
+" ctrl-p config
+let g:ctrlp_custom_ignore = 'classes/'
 
 colorscheme hybrid
