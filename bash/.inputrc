@@ -1,0 +1,6 @@
+$include /etc/inputrc
+
+set completion-ignore-case On
+set completion-map-case On
+set colored-completion-prefix On
+set completion-ignore-case On
