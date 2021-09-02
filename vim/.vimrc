@@ -58,7 +58,7 @@ set backspace=2                           " more powerful backspacing
 set autochdir                             " always switch to the current file directory
 set backup                                " always make backup files
 set backupdir=~/.vim-backup               " where to store backup files
-set directory=~/.vim-swp                  " keep swapfiles in one place.
+"set directory=~/.vim-swp                  " keep swapfiles in one place.
 set undofile                              " always make undo files
 set undodir=~/.vim-undo                   " keep undo files in one place
 set incsearch                             " incremental search
@@ -76,6 +76,7 @@ set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
 set clipboard=unnamedplus                 " fix copy/paste issue
+set noswapfile 
 
 " Change <Leader>
 let mapleader = ","
