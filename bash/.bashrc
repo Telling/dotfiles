@@ -61,7 +61,7 @@ parse_git_branch() {
 }
 
 parse_background_jobs() {
-    bg_jobs=$(jobs -p) && [[ "${bg_jobs}" != "" ]] && echo " {$(echo "$bg_jobs" | wc -l)}"
+    bg_jobs=$(jobs -p) && [[ "${bg_jobs}" != "" ]] && echo " {$(echo "${bg_jobs}" | wc -l)}"
 }
 
 export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\]\$(__docker_machine_ps1)\$(parse_background_jobs)\$ "
