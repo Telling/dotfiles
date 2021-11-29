@@ -28,6 +28,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+complete -C '/usr/local/bin/terraform' terraform
+complete -C '/usr/local/bin/aws_completer' aws
+
 # enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -37,17 +40,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-complete -C /home/st/.local/bin/terraform terraform
-
 # Save and reload the history after each command finishes
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# Java configuration
-export JAVA_HOME="/usr/lib/jvm/java-15-openjdk-amd64/"
+#PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Python configuration
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/liva
+export PROJECT_HOME=$HOME/tnx
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
 source $HOME/.local/bin/virtualenvwrapper.sh
@@ -76,7 +74,14 @@ if [ -f ~/.bash_functions ]; then
     . "${HOME}/.bash_functions"
 fi
 
+if [ -d "${HOME}/TNX/fx" ]; then
+    export PATH=${HOME}/TNX/fx/build/bin:${HOME}/TNX/fx/tools/bin:$PATH
+fi
+
 # Secrets for my environment
-if [ -f ~/.env_secrets ]; then
-    . "${HOME}/.env_secrets"
+secrets=$(find ~/.*_secrets -type f)
+if [ -n "${secrets}" ]; then
+    for f in ${secrets}; do
+        source "${f}"
+    done
 fi

@@ -1,25 +1,19 @@
-mount_sddata(){
-    echo "--> Unlocking disk..."
-    udisksctl unlock -b /dev/mmcblk0
-    echo "--> Mounting disk..."
-    udisksctl mount -b /dev/dm-3
-}
-
-unmount_sddata(){
-    echo "--> Unmounting disk..."
-    udisksctl unmount -b /dev/dm-3
-    echo "--> Locking disk..."
-    udisksctl lock -b /dev/mmcblk0
-}
-
 vimwiki() {
-    vim "${PERSONAL_STORAGE_PATH}/vimwiki/index.wiki"
+    vim "${HOME}/vimwiki/index.wiki"
+}
+
+amichrooted() {
+    if [ "$(awk '$5=="/" {print $1}' </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' </proc/$$/mountinfo)" ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
 }
 
 # https://stackoverflow.com/a/18915067
 SSH_ENV="$HOME/.ssh/agent-environment"
 
-function start_agent {
+start_agent() {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     echo succeeded
@@ -32,7 +26,6 @@ function start_agent {
 
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
         start_agent;
     }

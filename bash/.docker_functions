@@ -77,15 +77,6 @@ thunderbird(){
         telling/thunderbird "${@}"
 }
 
-aws() {
-    docker run \
-        --rm \
-        -ti \
-        -v ~/.aws:/root/.aws \
-        -v "${PWD}:/aws" \
-        amazon/aws-cli:2.0.36 "${@}"
-}
-
 # Export env. vars. for docker client to point at host
 docker_machine_env() {
     if [[ -z ${1} ]]; then

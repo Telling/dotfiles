@@ -3,6 +3,7 @@ alias gl='git log'
 alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
+alias gb='git branch'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

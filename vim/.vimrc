@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'tweekmonster/django-plus.vim'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -30,10 +29,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vimwiki/vimwiki'
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'chr4/nginx.vim'
 Plug 'chr4/sslsecure.vim'
 Plug 'dense-analysis/ale'
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
@@ -114,7 +113,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " Ignore some subset of files
-set wildignore="*.class"
+set wildignore="*.class build/"
 
 " Filetype specific options for TeX
 autocmd FileType tex setlocal fileencoding=utf-8
@@ -123,13 +122,6 @@ autocmd FileType tex setlocal spell
 autocmd FileType tex setlocal spelllang=da
 " make sure vim-latex is loaded if the file is an empty .tex
 let g:tex_flavor='latex'
-
-" Omnicompletion for various languages
-autocmd FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
-
-" Java completion
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java JCEnable
 
 " NERDTree config
 let NERDTreeChDirMode=2
@@ -158,7 +150,7 @@ noremap <silent> <F4> :TagbarToggle<CR>
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_sh_bashate_options = '--max-line-length 88'
-let g:ale_list_window_size = 10
+let g:ale_list_window_size = 6
 
 " NERD commenter config
 let g:NERDCustomDelimiters = {'python': { 'left': '# ' }}
@@ -167,7 +159,6 @@ let g:NERDCustomDelimiters = {'python': { 'left': '# ' }}
 let g:easytags_async = 1
 
 " YouCompleteMe config
-let g:ycm_complete_in_comments = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " UltiSnips config
