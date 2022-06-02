@@ -25,7 +25,7 @@ Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'frazrepo/vim-rainbow'
 Plug 'hashivim/vim-terraform'
 Plug 'vimwiki/vimwiki'
 Plug 'chr4/nginx.vim'
@@ -91,12 +91,6 @@ autocmd FileType js setlocal sw=2 ts=2 sts=2
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 autocmd FileType xml setlocal sw=2 ts=2 sts=2
 autocmd FileType sql setlocal sw=2 ts=2 sts=2
-
-" always use rainbow parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
 " Don't write backup file if vim is being called by 'crontab -e'
 au BufWrite /private/tmp/crontab.* set nowritebackup
@@ -168,7 +162,12 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16'
 let g:airline_base16_improved_contrast = 1
 
+" vim-rainbow config
+let g:rainbow_active = 1
+
 " ack config
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 let g:ackprg = 'ag --vimgrep'
 
 " vim-terraform config
