@@ -24,8 +24,8 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+    . "${HOME}/.bash_aliases"
 fi
 
 complete -C '/usr/local/bin/terraform' terraform
@@ -43,13 +43,6 @@ fi
 # Save and reload the history after each command finishes
 #PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# Python configuration
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/tnx
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
-source $HOME/.local/bin/virtualenvwrapper.sh
-
 parse_git_stash() {
     [[ $(git stash list 2> /dev/null | tail -n1) != "" ]] && echo ":stash"
 }
@@ -65,12 +58,12 @@ parse_background_jobs() {
 export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\]\$(__docker_machine_ps1)\$(parse_background_jobs)\$ "
 
 # Docker helper functions
-if [ -f ~/.docker_functions ]; then
+if [ -f "${HOME}/.docker_functions" ]; then
     . "${HOME}/.docker_functions"
 fi
 
 # Functions to make everyday living a joy
-if [ -f ~/.bash_functions ]; then
+if [ -f "${HOME}/.bash_functions" ]; then
     . "${HOME}/.bash_functions"
 fi
 
@@ -85,3 +78,15 @@ if [ -n "${secrets}" ]; then
         source "${f}"
     done
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="${PYENV_ROOT}/bin:$PATH"
+export PATH="${HOME}/.pyenv/bin:${PATH}"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
