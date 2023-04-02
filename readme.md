@@ -12,4 +12,4 @@ Then:
 4. `stow vim`
 5. `stow git`
 6. `stow tmux`
-
+7. `stow scripts`

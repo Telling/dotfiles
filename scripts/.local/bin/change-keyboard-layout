@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $(setxkbmap -query | grep layout | cut -d":" -f 2 | xargs) == "us" ]]; then
+    setxkbmap dk
+else
+    setxkbmap us
+fi
