@@ -1,5 +1,5 @@
 vimwiki() {
-    vim "${HOME}/vimwiki/index.wiki"
+    nvim "${HOME}/vimwiki/index.wiki"
 }
 
 amichrooted() {
