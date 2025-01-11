@@ -20,7 +20,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
-Plug 'ekalinin/Dockerfile.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'frazrepo/vim-rainbow'
 Plug 'hashivim/vim-terraform'
@@ -28,6 +27,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'chr4/nginx.vim'
 Plug 'chr4/sslsecure.vim'
 Plug 'dense-analysis/ale'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 call plug#end()
 
@@ -140,6 +140,10 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 let g:ale_sh_bashate_options = '--max-line-length 88'
 let g:ale_list_window_size = 6
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = { 'python': ['ruff', 'ruff_format'], }
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'], 'python': ['ruff_format',], }
 
 " NERD commenter config
 let g:NERDCustomDelimiters = {'python': { 'left': '# ' }}
@@ -169,6 +173,7 @@ let g:ackprg = 'ag --vimgrep'
 
 " vim-terraform config
 let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " gitgutter config
 autocmd BufWritePost * GitGutter
@@ -202,4 +207,4 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" 
 " ctrl-p config
 let g:ctrlp_custom_ignore = 'classes/'
 
-colorscheme hybrid
+colorscheme catppuccin-frappe
