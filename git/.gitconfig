@@ -22,11 +22,12 @@
 
 [core]
     excludesfile = ~/.gitignore_global
-    editor = vim
+    editor = nvim
     whitespace = trailing-space,space-before-tab,indent-with-non-tab
 
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    branch-done = !branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull && git branch -D "${branch}"
 
 [filter "media"]
     required = true
