@@ -49,7 +49,6 @@ set background=dark                       " tell vim background color is dark
 set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅  " shows the respective signs if either tab, trail or nbsp
 set showmode                              " show mode in status bar
 set backspace=2                           " more powerful backspacing
-set autochdir                             " always switch to the current file directory
 set backup                                " always make backup files
 set backupdir=~/.local/share/nvim/backup  " where to store backup files
 set directory=~/.local/share/nvim/swap    " keep swapfiles in one place.
@@ -70,7 +69,7 @@ set cursorline                            " draw a line where the cursor is
 set encoding=utf-8
 set termencoding=utf-8
 set clipboard=unnamedplus                 " fix copy/paste issue
-set noswapfile 
+set noswapfile
 
 " Change <Leader>
 let mapleader = ","
