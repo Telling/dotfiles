@@ -152,7 +152,7 @@ let g:easytags_async = 1
 
 " YouCompleteMe config
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_path_to_python_interpreter = "/usr/bin/python3"
+let g:ycm_path_to_python_interpreter = "python3"
 
 " UltiSnips config
 let g:UltiSnipsExpandTrigger="<c-j>"
