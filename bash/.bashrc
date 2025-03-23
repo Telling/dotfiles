@@ -75,10 +75,8 @@ if [ -n "${secrets}" ]; then
     done
 fi
 
-# pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:$PATH"
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
+
+export PATH="${HOME}/.local/usr/bin:$PATH"
