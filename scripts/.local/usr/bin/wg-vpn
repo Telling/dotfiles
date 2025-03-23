@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+WG_DIR="/etc/wireguard"
+
+usage () {
+    echo "command up or down required, i.e. wg-vpn up <name>"
+}
+
+if [ -z "${1}" ]; then
+    usage
+    exit 1
+fi
+
+if [ -z "${2}" ]; then
+    echo "Name of VPN required"
+    exit 1
+fi
+
+WG_CONF="${WG_DIR}/${2}.conf"
+
+if [[ "${1}" == "up" ]] || [[ "${1}" == "down" ]]; then
+    echo "Wireguard VPN ${2} ${1}"
+    sudo wg-quick "${1}" "${WG_CONF}"
+else
+    usage
+    exit 1
+fi
