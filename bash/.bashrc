@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -25,7 +25,7 @@ shopt -s checkwinsize
 
 # Alias definitions.
 if [ -f "${HOME}/.bash_aliases" ]; then
-    . "${HOME}/.bash_aliases"
+  . "${HOME}/.bash_aliases"
 fi
 
 complete -C '/usr/local/bin/terraform' terraform
@@ -44,35 +44,35 @@ fi
 #PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 parse_git_stash() {
-    [[ $(git stash list 2> /dev/null | tail -n1) != "" ]] && echo ":stash"
+  [[ $(git stash list 2>/dev/null | tail -n1) != "" ]] && echo ":stash"
 }
 
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_stash))/"
+  git branch 2>/dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_stash))/"
 }
 
 parse_background_jobs() {
-    bg_jobs=$(jobs -p) && [[ "${bg_jobs}" != "" ]] && echo " {$(echo "${bg_jobs}" | wc -l)}"
+  bg_jobs=$(jobs -p) && [[ "${bg_jobs}" != "" ]] && echo " {$(echo "${bg_jobs}" | wc -l)}"
 }
 
 export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\]\$(__docker_machine_ps1)\$(parse_background_jobs)\$ "
 
 # Docker helper functions
 if [ -f "${HOME}/.docker_functions" ]; then
-    . "${HOME}/.docker_functions"
+  . "${HOME}/.docker_functions"
 fi
 
 # Functions to make everyday living a joy
 if [ -f "${HOME}/.bash_functions" ]; then
-    . "${HOME}/.bash_functions"
+  . "${HOME}/.bash_functions"
 fi
 
 # Secrets for my environment
 secrets=$(find ~/.*_secrets -type f)
 if [ -n "${secrets}" ]; then
-    for f in ${secrets}; do
-        source "${f}"
-    done
+  for f in ${secrets}; do
+    source "${f}"
+  done
 fi
 
 . "$HOME/.local/bin/env"
@@ -80,3 +80,7 @@ eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 
 export PATH="${HOME}/.local/usr/bin:$PATH"
+
+export EDITOR=nvim
+
+alias claude="${HOME}/.claude/local/claude"
