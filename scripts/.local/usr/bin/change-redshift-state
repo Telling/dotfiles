@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+redshift_state=$(systemctl --user show redshift | grep ActiveState | cut -d'=' -f2)
+
+if [[ "${redshift_state}"  == "active" ]]; then
+    systemctl_command="stop"
+else
+    systemctl_command="start"
+fi
+
+systemctl --user "${systemctl_command}" redshift
