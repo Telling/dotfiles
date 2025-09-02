@@ -1,44 +1,48 @@
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
 
 [color "branch"]
-    current = green reverse
-    local = green
-    remote = red
+  current = green reverse
+  local = green
+  remote = red
 
 [color "diff"]
-    meta = green bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+  meta = green bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = magenta
+  added = green
+  changed = yellow
+  untracked = magenta
 
 [core]
-    excludesfile = ~/.gitignore_global
-    editor = nvim
-    whitespace = trailing-space,space-before-tab,indent-with-non-tab
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+  whitespace = trailing-space,space-before-tab,indent-with-non-tab
 
 [alias]
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    branch-done = !branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull && git branch -D "${branch}"
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  branch-done = !branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull && git branch -D "${branch}"
 
 [filter "media"]
-    required = true
-    clean = git media clean %f
-    smudge = git media smudge %f
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
 
 [diff]
-    tool = vimdiff
+  tool = vimdiff
 
 [commit]
-    verbose = true
+  verbose = true
+  gpgsign = true
 
 [status]
-    showStash = true
+  showStash = true
+
+[gpg]
+  format = ssh
