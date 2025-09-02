@@ -1,5 +1,9 @@
 vimwiki() {
-    nvim "${HOME}/vimwiki/index.wiki"
+    nvim "${HOME}/vimwiki/index.md"
+}
+
+tar_folder() {
+    tar -czvf ${1}.tar.gz ${1}/ --mtime="@$(date +%s)"
 }
 
 amichrooted() {
