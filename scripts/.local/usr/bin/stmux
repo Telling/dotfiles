@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+session="${1:-stmux}"
+
+panes="${2:-3}"
+
+pane() {
+  tmux new-window -t "${session}:${1}"
+  tmux split-window -t "${session}:${1}" -h -l '50%'
+}
+
+if [[ $(tmux list-sessions | grep "${session}") == "" ]]; then
+  tmux new-session -d -s "${session}"
+
+  tmux rename-window -t "${session}:0" 'main'
+  tmux split-window -t "${session}:0" -h -l '50%'
+
+  for ((i = 1; i < $panes; i++)); do
+    pane "${i}"
+  done
+fi
+
+tmux attach-session -t "${session}:0"
